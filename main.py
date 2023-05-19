@@ -11,6 +11,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from xgboost import XGBClassifier
 
+@st.cache_resource
+def model_fit(model,X_train,y_train):
+    return model.fit(X_train, y_train)
+
 st.set_page_config(layout="wide")
 st.markdown(f"""
 # Model Evaluation Report
@@ -68,7 +72,7 @@ with st.sidebar:
 
         selected = st.selectbox('Select a model',list(models))
         # Fit a model
-        clf = models[selected].fit(X_train, y_train)
+        clf = model_fit(models[selected],X_train, y_train)
 
         # Predict probability
         y_pred = clf.predict_proba(X_test)[:,1]
