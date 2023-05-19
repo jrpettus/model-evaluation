@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
-from io import StringIO
+#from io import StringIO
 from metrics import ModelEvaluator
 from sklearn.datasets import make_classification
 from sklearn.naive_bayes import GaussianNB
@@ -19,6 +19,15 @@ st.markdown(f"""
 with st.sidebar:
     st.markdown("""
     # Evaluation Inputs 
+
+    Evaluate model classification results at various thresholds. This uses either example model results or you can load your own data.
+    The app currently only supports binary classifiers
+
+    Your own data must consist of following:
+    - Be a csv file
+    - Have a column containing actual values (e.g 1,0)
+    - Have a column containing predicted probabilities 
+
     
     Upload your own data or work with example classification data with various models
     """)

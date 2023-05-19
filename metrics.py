@@ -1,7 +1,7 @@
 import altair as alt
 import numpy as np
 import pandas as pd
-from sklearn.metrics import roc_curve, precision_recall_curve, auc, confusion_matrix, ConfusionMatrixDisplay, accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
+from sklearn.metrics import roc_curve, precision_recall_curve, auc, confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, matthews_corrcoef
 
 class ModelEvaluator:
     def __init__(self, actual, predicted):
@@ -57,8 +57,8 @@ class ModelEvaluator:
 
         return ((roc_line + roc + threshold_line + diag_line).properties(
             title=alt.TitleParams(text=chart_title, fontSize=16), 
-            width=600,
-            height=600
+            width=400,
+            height=400
             ).interactive()
             )
     
@@ -72,8 +72,8 @@ class ModelEvaluator:
             tooltip=['thresholds', 'fpr']
         ).properties(
             title=alt.TitleParams(text='False Positive Rate and True Positive Rate vs Threshold', fontSize=16),
-            width=600,
-            height=600
+            width=400,
+            height=400
         ) + alt.Chart(df_adj).mark_line().encode(
             #x='thresholds',
             #y='tpr',
@@ -100,8 +100,8 @@ class ModelEvaluator:
             tooltip=['precision','recall','thresholds']
         ).properties(
             title=alt.TitleParams(text='Precision vs. Recall', fontSize=16),
-            width=600,
-            height=600
+            width=400,
+            height=400
         )
         )
 
@@ -144,8 +144,8 @@ class ModelEvaluator:
         # Combine the heatmap and text labels
         chart = (heatmap + text).properties(
             title='Confusion Matrix Heatmap',
-            width=600,
-            height=600
+            width=400,
+            height=400
         ).interactive()
 
         # Remove axis labels and ticks
@@ -175,8 +175,8 @@ class ModelEvaluator:
             color='Actual:O'
         ).properties(
             title='Probability Densities',
-            width=1500,
-            height=600
+            width=900,
+            height=500
         ).interactive()
 
         threshold_line = alt.Chart(pd.DataFrame({'threshold': [threshold]})).mark_rule(color='red').encode(
