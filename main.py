@@ -11,7 +11,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from xgboost import XGBClassifier
 
-@st.cache
+#@st.cache
 def model_fit(model,X_train,y_train):
     return model.fit(X_train, y_train)
 
